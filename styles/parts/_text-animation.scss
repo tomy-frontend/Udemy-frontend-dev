@@ -1,23 +1,27 @@
+// グローバル設定の変数を取り込む
 @use "../globals" as *;
 
+// タイトルアニメーションの共通スタイル
 .animate-title,
 .tween-animate-title {
-  opacity: 0;
+  opacity: 0;  // 初期状態では透明
 
-  &.inview {
+  &.inview {  // タイトルが画面内に入ったときのスタイル
     opacity: 1;
 
-    & .char {
-      display: inline-block;
+    & .char {  // 各文字に適用するスタイル
+      display: inline-block; // 横並び表示
     }
   }
 
-  & .char {
+  & .char {  // 各文字の初期スタイル
     opacity: 0;
   }
 }
 
+// タイトルが画面内に入った時の文字アニメーション
 .animate-title.inview .char {
+  // アニメーションの適用
   @include animation(
     $name: kf-animate-chars,
     $duration: 0.5s,
@@ -25,6 +29,7 @@
     $fill-mode: both
   );
 
+  // 30文字までの遅延を設定
   @for $i from 1 through 30 {
     &:nth-child(#{$i}) {
       animation-delay: $i * 0.04s;
@@ -32,14 +37,15 @@
   }
 }
 
+// 文字アニメーションのキーフレーム定義
 @keyframes kf-animate-chars {
   0% {
-    opacity: 0;
-    transform: translateY(-50%);
+    opacity: 0; // 初めは透明
+    transform: translateY(-50%); // 初めは上に50%ずらして表示
   }
 
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; // 最後は完全に表示
+    transform: translateY(0); // 最後は通常の位置に
   }
 }

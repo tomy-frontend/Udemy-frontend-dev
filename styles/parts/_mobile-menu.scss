@@ -1,30 +1,36 @@
+// グローバル設定の変数を取り込む
 @use "../globals" as *;
 
-
+// メニューボタンの閉じた時と開いた時の色設定
 $cMenuClose: $cBlack;
 $cMenuOpen: $cBlack;
 
+// モバイルメニューのスタイル設定
 .mobile-menu {
   position: fixed;
   right: 0;
   top: 60px;
   width: 300px;
 
+  // ロゴのスタイル
   & .logo {
     padding: 0 40px;
     font-size: 38px;
   }
 
+  // メニューボタンのスタイル
   &__btn {
     background-color: unset;
     border: none;
     outline: none !important;
     cursor: pointer;
 
+    // ラージデバイスでの表示設定
     @include mq(lg) {
       display: none;
     }
 
+    // ボタンのバー部分のスタイル
     & > span {
       background-color: $cMenuClose;
       width: 35px;
@@ -38,6 +44,8 @@ $cMenuOpen: $cBlack;
       }
     }
   }
+
+  // メニューのカバー部分のスタイル
   &__cover {
     position: absolute;
     top: 0;
@@ -51,11 +59,15 @@ $cMenuOpen: $cBlack;
     cursor: pointer;
     z-index: 200;
   }
+
+  // メニュー本体のスタイル
   &__main {
     padding: 0;
     perspective: 2000px;
     transform-style: preserve-3d;
   }
+
+  // メニュー項目のスタイル
   &__item {
     list-style: none;
     display: block;
@@ -64,6 +76,8 @@ $cMenuOpen: $cBlack;
     transition: transform 0.3s, opacity 0.2s;
     opacity: 0;
   }
+
+  // メニューリンクのスタイル
   &__link {
     display: block;
     margin-top: 30px;
@@ -72,27 +86,35 @@ $cMenuOpen: $cBlack;
   }
 }
 
+// メニューが開かれた時のスタイル
 .menu-open {
+  // コンテナの移動と影のスタイル
   & #container {
     transform: translate(-300px, 60px);
     box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
   }
 
   & .mobile-menu {
+    // カバー部分が表示されるスタイル
     &__cover {
       opacity: 1;
       visibility: visible;
     }
+
+    // メニュー項目が表示されるスタイル
     &__item {
       transform: none;
       opacity: 1;
 
+      // 各項目の遅延を設定
       @for $i from 1 through 5 {
         &:nth-child(#{$i}) {
           transition-delay: $i * 0.07s;
         }
       }
     }
+
+    // メニューボタンがクロスマークに変わるスタイル
     &__btn {
       & > span {
         background-color: $cMenuOpen;
@@ -113,3 +135,4 @@ $cMenuOpen: $cBlack;
     }
   }
 }
+

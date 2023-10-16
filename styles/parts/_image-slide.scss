@@ -1,10 +1,12 @@
+// 全体的な変数を取り込む
 @use "../globals" as *;
 
-
+// スライドのカバー設定
 .cover-slide {
   position: relative;
   overflow: hidden;
 
+  // カバーエフェクトの初期設定
   &::after {
     content: "";
     position: absolute;
@@ -13,13 +15,16 @@
     left: 0;
     right: 0;
     bottom: 0;
+    // カバーの色設定
     background-color: #eaebe6;
-    opacity: 0;
+    opacity: 0; // 初期透明度
   }
+  
+  // .inviewクラスがついた時のアニメーション設定
   &.inview {
     &::after {
-      opacity: 1;
-
+      opacity: 1; // 透明度を1にする
+      
       @include animation(
         $name: kf-cover-slide,
         $duration: 1.6s,
@@ -30,6 +35,7 @@
   }
 }
 
+// カバースライドのキーフレームアニメーション定義
 @keyframes kf-cover-slide {
   0% {
     transform-origin: left;
@@ -49,9 +55,11 @@
   }
 }
 
+// 画像のズーム効果設定
 .img-zoom {
   opacity: 0;
 
+  // .inviewクラスがついた時のアニメーション設定
   .inview & {
     opacity: 1;
     transition: transform 0.3s ease;
@@ -62,28 +70,25 @@
       $fill-mode: none
     );
 
+    // 画像をホバー時にズーム
     &:hover {
       transform: scale(1.05);
     }
   }
 }
 
+// 画像の表示アニメーションのキーフレーム定義
 @keyframes kf-img-show {
-  0% {
+  0%, 50% {
     opacity: 0;
   }
-  50% {
-    opacity: 0;
-  }
-  50.1% {
+  50.1%, 100% {
     opacity: 1;
     transform: scale(1.5);
   }
-  100% {
-    opacity: 1;
-  }
 }
 
+// ホバー時に暗くなるエフェクト
 .hover-darken {
   &::before {
     content: "";
@@ -103,26 +108,33 @@
       $fill-mode: none
     );
   }
+  
+  // ホバー時に暗さを増す
   &:hover::before {
     background-color: rgba(0, 0, 0, 0.4);
   }
 }
 
+// 背景画像のズーム効果
 .bg-img-zoom {
+  // 背景画像設定
   background-image: url(images/image-1.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
-  @extend .img-zoom;
+  
+  @extend .img-zoom; // img-zoomクラスのスタイルを継承
 }
 
+// アスペクト比50%の背景画像設定
 .img-bg50 {
   position: relative;
 
+  // アスペクト比の維持設定
   &::before {
     display: block;
     content: "";
-    padding-top: 50%;
+    padding-top: 50%; // 高さを50%に設定
   }
 }

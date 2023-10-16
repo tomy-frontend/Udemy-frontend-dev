@@ -1,5 +1,7 @@
+// 全体的な変数を取り込む
 @use "../globals" as *;
 
+// 基本ボタンのスタイル
 .btn {
   position: relative;
   display: inline-block;
@@ -13,17 +15,20 @@
   color: $cBlack;
   text-decoration: none !important;
 
+  // ホバー時の浮き上がりエフェクト
   &.float:hover {
     background-color: $cBlack;
     color: $cWhite;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
   }
 
+  // 塗りつぶしスタイル
   &.filled {
     background-color: $cBlack;
     color: $cWhite;
     box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
 
+    // ホバー時に背景とテキストの色を反転
     &:hover {
       background-color: $cWhite;
       color: $cBlack;
@@ -31,36 +36,43 @@
     }
   }
 
+  // ホバー時の文字間隔の拡大
   &.letter-spacing:hover {
     background-color: $cBlack;
     letter-spacing: 3px;
     color: $cWhite;
   }
 
+  // 影のエフェクト
   &.shadow {
     box-shadow: none;
 
+    // ホバー時の影の移動と変化
     &:hover {
       transform: translate(-2.5px, -2.5px);
       box-shadow: 5px 5px 0 0 $cBlack;
     }
   }
 
+  // 固定の影のエフェクト
   &.solid {
     box-shadow: 2px 2px 0 0 $cBlack;
     border-radius: 7px;
 
+    // ホバー時の影の消失と移動
     &:hover {
       transform: translate(2px, 2px);
       box-shadow: none;
     }
   }
 
+  // 背景のスライドエフェクト
   &.slide-bg {
     position: relative;
     overflow: hidden;
     z-index: 1;
 
+    // 初期状態の背景
     &::before {
       content: "";
       display: inline-block;
@@ -75,6 +87,7 @@
       z-index: -1;
     }
 
+    // ホバー時の背景の変化
     &:hover {
       color: $cWhite;
 
@@ -83,6 +96,8 @@
       }
     }
   }
+
+  // 3Dエフェクト
   &.cover-3d {
     position: relative;
     z-index: 1;
@@ -94,6 +109,7 @@
       transform: translateZ(20px);
     }
 
+    // 3D背景の初期状態
     &::before {
       content: "";
       display: inline-block;
@@ -109,6 +125,7 @@
       opacity: 0;
     }
 
+    // ホバー時の3D背景の変化
     &:hover {
       color: $cWhite;
 
@@ -120,6 +137,7 @@
   }
 }
 
+// 3D回転エフェクトのボタン
 .btn-cubic {
   position: relative;
   display: inline-block;
@@ -146,18 +164,21 @@
     color: black;
   }
 
+  // ホバー前の状態
   & .hovering {
     background-color: $cBlack;
     color: $cWhite;
     transform: rotateX(90deg);
   }
 
+  // デフォルト状態
   & .default {
     background-color: $cWhite;
     color: $cBlack;
     transform: rotateX(0);
   }
 
+  // ホバー時の3D回転
   &:hover {
     & .hovering {
       transform: rotateX(0);

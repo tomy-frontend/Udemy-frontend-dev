@@ -1,11 +1,13 @@
+// アニメーション関連のスタイルを簡単に設定するためのミックスイン。
+// 以下のパラメータを受け取り、CSSのアニメーションプロパティを出力します。
 @mixin animation(
-  $name,
-  $duration: 1s,
-  $timing-function: ease,
-  $delay: 0s,
-  $iteration-count: 1,
-  $direction: normal,
-  $fill-mode: forwards
+  $name,  // 必須。アニメーションの名前。
+  $duration: 1s,  // アニメーションの期間。デフォルトは1秒。
+  $timing-function: ease,  // アニメーションのタイミング関数。デフォルトはease。
+  $delay: 0s,  // アニメーションが開始されるまでの遅延。デフォルトは0秒。
+  $iteration-count: 1,  // アニメーションの反復回数。デフォルトは1回。
+  $direction: normal,  // アニメーションの方向。デフォルトはnormal。
+  $fill-mode: forwards  // アニメーションが完了した後のスタイルの振る舞い。デフォルトはforwards。
 ) {
   animation: {
     name: $name;
@@ -18,15 +20,17 @@
   }
 }
 
+// ::before や ::after 疑似要素の基本的なスタイルを設定するためのミックスイン。
+// 以下のパラメータを受け取り、指定された疑似要素のスタイルを出力します。
 @mixin p-base(
-  $which: before,
-  $top: 0,
-  $left: 0,
-  $content: "",
-  $position: absolute,
-  $width: 100%,
-  $height: 100%,
-  $display: block
+  $which: before,  // 疑似要素の種類。デフォルトは::before。
+  $top: 0,  // 位置のトップオフセット。デフォルトは0。
+  $left: 0,  // 位置の左オフセット。デフォルトは0。
+  $content: "",  // 疑似要素のコンテンツ。デフォルトは空文字。
+  $position: absolute,  // 位置のタイプ。デフォルトはabsolute。
+  $width: 100%,  // 幅。デフォルトは100%。
+  $height: 100%,  // 高さ。デフォルトは100%。
+  $display: block  // 表示タイプ。デフォルトはblock。
 ) {
   &::#{$which} {
     display: $display;
@@ -36,6 +40,6 @@
     left: $left;
     width: $width;
     height: $height;
-    @content;
+    @content;  // ミックスイン内でさらに追加のスタイルを指定するためのブロック。
   }
 }

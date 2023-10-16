@@ -1,3 +1,4 @@
+// 変数: 各方向における移動のパターンを定義
 $pattern: (
   "up": translateY(6px),
   "down": translateY(-6px),
@@ -5,6 +6,7 @@ $pattern: (
   "right": translateX(-40px),
 );
 
+// $patternマップ内の各方向のクラスに対応する移動スタイルを生成
 @each $key, $value in $pattern {
   .appear.#{$key} {
     & .item {
@@ -13,19 +15,24 @@ $pattern: (
   }
 }
 
+// 基本の.appearスタイル
 .appear {
+  // .itemはデフォルトで非表示 (opacity 0) に設定
   & .item {
-    transition: all 0.8s;
+    transition: all 0.8s; // 0.8秒のアニメーションを適用
     opacity: 0;
   }
+
+  // .appear要素が.inviewクラスを持っている場合のスタイル
   &.inview {
     & .item {
-      opacity: 1;
-      transform: none;
+      opacity: 1;         // .itemを完全表示
+      transform: none;   // transformを初期値にリセット
 
+      // 最初の10個の.itemに順番に遅延を設定
       @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
-          transition-delay: $i * 0.1s;
+          transition-delay: $i * 0.1s; // i番目のアイテムの遅延時間を設定
         }
       }
     }

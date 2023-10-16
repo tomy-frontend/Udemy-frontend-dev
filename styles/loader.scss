@@ -1,18 +1,22 @@
+// 共通の変数やミックスインを読み込み
 @use "globals" as *;
 
+// ページが完全に読み込まれたら、#global-containerの不透明度を1にしてフェードインする
 .pace-done #global-container {
   transition: opacity 1s;
   opacity: 1;
 }
 
+// 初期状態では#global-containerは完全に透明
 #global-container {
   opacity: 0;
 }
 
+// ページの読み込み中に表示されるローディングインジケータのスタイル
 .pace {
-  z-index: 2000;
-  position: fixed;
-  margin: auto;
+  z-index: 2000;            // 他の要素より前面に配置
+  position: fixed;          // 位置を固定
+  margin: auto;             // 中央寄せ
   top: 0;
   left: 0;
   right: 0;
@@ -22,37 +26,41 @@
 }
 
 .pace .pace-progress {
-  transform: none !important;
-  text-align: center;
+  transform: none !important;  // 他のスタイルをオーバーライドして変形を無効にする
+  text-align: center;          // テキストを中央寄せ
 }
 
+// ローディングインジケータの中に表示される進行状況のテキスト
 .pace .pace-progress::after {
-  content: attr(data-progress-text);
+  content: attr(data-progress-text);  // data-progress-text属性の値を表示
   display: block;
   font-weight: 100;
   font-size: 2em;
   font-family: "Helvetica Neue", "Yu Gothic", "Meiryo", sans-serif;
-  color: $cSubTitle;
+  color: $cSubTitle;  // 変数から色を取得
 }
 
+// ローディングが非アクティブの場合、表示されないようにする
 .pace.pace-inactive {
   display: none;
 }
 
+// ローディングインジケータの内部要素のスタイル
 .pace-progress-inner {
   width: 40px;
   height: 40px;
-  background-color: $cWineRed;
+  background-color: $cWineRed;  // 変数から色を取得
 
-  margin: 0 auto;
-  @include animation(
+  margin: 0 auto;  // 中央寄せ
+  @include animation(  // アニメーションを適用
     $name: sk-rotateplane,
     $duration: 1.2s,
-    $iteration-count: infinite,
+    $iteration-count: infinite,  // 無限に繰り返し
     $timing-function: ease-in-out
   );
 }
 
+// 3D回転アニメーション
 @keyframes sk-rotateplane {
   0% {
     transform: perspective(120px) rotateX(0deg) rotateY(0deg);

@@ -1,26 +1,38 @@
+// 全体的な変数を取り込む
 @use "../globals" as *;
 
+// Swiperのスライドショーの基本設定
 .swiper {
+  // オーバーフローを表示する設定
   overflow: visible !important;
 }
 
+// Swiperの各スライドの設定
 .swiper-slide {
+  // 高さ設定
   height: 500px;
+  // 内容がはみ出たときは非表示
   overflow: hidden;
 
+  // lg(おそらくlargeサイズの画面)の時の影を設定
   @include mq(lg) {
     box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
   }
 
+  // スライド内の画像設定
   & > img {
     width: 100%;
     height: 100%;
     max-width: 100%;
+    // 画像がはみ出た際の設定
     object-fit: cover;
+    // 拡大
     transform: scale(1.3);
+    // 拡大時のアニメーション設定
     transition: transform 1.9s ease;
   }
 
+  // スライドのアフターペルボックス設定（おそらく透明度のあるオーバーレイ）
   &::after {
     content: "";
     position: absolute;
@@ -28,41 +40,57 @@
     left: 0;
     width: 100%;
     height: 100%;
+    // オーバーレイの色設定
     background-color: rgba(0, 61, 125, 0.1);
   }
 
+  // アクティブなスライドの設定
   &-active {
+    // アクティブなスライド内の画像は拡大しない
     & > img {
       transform: none;
     }
 
+    // アクティブなスライド内のタイトル設定
     & .hero__title {
+      // 透明度を1に
       opacity: 1;
+      // 中央寄せ
       transform: translate(-50%, -50%);
     }
   }
 }
 
+// heroセクションの設定
 .hero {
   overflow: hidden;
+  // 上部のパディング設定（ナビゲーションの高さ分）
   padding-top: $navHeight;
 
+  // タイトル部分の設定
   &__title {
     position: absolute;
+    // 中央に配置
     top: 50%;
     left: 50%;
     transform: translate(-50%, calc(-50% + 20px));
+    // 文字色を白に
     color: $cWhite;
     font-size: 25px;
     z-index: 2;
+    // 初期は透明
     opacity: 0;
+    // 透明度と位置の変化のアニメーション設定
     transition: opacity 0.3s ease 1s, transform 0.3s ease 1s;
   }
 
+  // フッター部分の設定
   &__footer {
     position: absolute;
-    left: 50%;
+    // 下部から20px上
     bottom: 20px;
+    // 中央寄せ
+    left: 50%;
     transform: translateX(-50%);
     z-index: 2;
     height: 68px;
@@ -70,11 +98,13 @@
     overflow: hidden;
   }
 
+  // ダウンアロー部分の設定
   &__downarrow {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 6px;
+    // 無限のアニメーション設定
     @include animation(
       $name: kf-arrow-anime,
       $iteration-count: infinite,
@@ -83,8 +113,10 @@
     );
   }
 
+  // スクロールテキスト部分の設定
   &__scrolltext {
     position: absolute;
+    // 90度回転
     transform: rotate(90deg);
     color: rgba(255, 255, 255, 0.7);
     left: -8px;
@@ -93,10 +125,9 @@
   }
 }
 
+// ダウンアローのアニメーション設定
 @keyframes kf-arrow-anime {
-  0%,
-  50%,
-  100% {
+  0%, 50%, 100% {
     transform: translateY(-10%);
   }
   30% {

@@ -1,102 +1,130 @@
+// 全体的な変数を取り込む
 @use "../globals" as *;
 
+// 基本的なbodyのスタイル設定
 body {
+  // 使用するフォントファミリーの指定
   font-family: "Kameron", "Noto Sans JP", sans-serif;
 }
 
+// 全てのimg要素のスタイル設定
 img {
+  // 画像の最大幅は親要素の100%にする
   max-width: 100%;
+  // 画像の垂直方向の位置をbottomに合わせる
   vertical-align: bottom;
 }
 
+// 小さいマージンボトムの設定
 .mb-sm {
   margin-bottom: 16px !important;
 }
 
+// 大きいマージンボトムの設定
 .mb-lg {
   margin-bottom: 80px !important;
 
+  // lg(おそらくlargeサイズの画面)の時のマージンボトム設定
   @include mq(lg) {
     margin-bottom: 150px !important;
   }
 }
 
+// 小さいパディングボトムの設定
 .pb-sm {
   padding-bottom: 16px !important;
 }
 
+// 大きいパディングボトムの設定
 .pb-lg {
   padding-bottom: 80px !important;
 
+  // lgの時のパディングボトム設定
   @include mq(lg) {
     padding-bottom: 150px !important;
   }
 }
 
+// コンテンツ幅の設定
 .content-width {
-  width: 90%;
-  margin: 0 auto;
-  max-width: $contentMaxWidth;
+  width: 90%;               // 基本的な幅は90%
+  margin: 0 auto;           // 中央寄せ
+  max-width: $contentMaxWidth; // 最大幅は変数で設定
 }
 
+// フレックスボックスの基本設定
 .flex {
   display: flex;
-  flex-direction: column;
+  flex-direction: column;   // モバイルでは縦方向
 
+  // md(中サイズの画面)以上では横方向にして折り返しを許可
   @include mq(md) {
     flex-direction: row;
     flex-wrap: wrap;
   }
 }
 
+// 色指定のショートカット
 .purple {
-  color: $cWineRed;
+  color: $cWineRed;         // ワインレッド色を適用
 }
 
+// メインコンテンツの基本設定
 #main-content {
   position: relative;
   z-index: 0;
 }
 
-// font
+// fontサイズの設定（小）
 .font-sm {
   font-size: 14px;
 
+  // lgの時のフォントサイズ変更
   @include mq(lg) {
     font-size: 16px;
   }
 }
+
+// fontサイズの設定（中）
 .font-md {
   font-size: 17px;
 
+  // lgの時のフォントサイズ変更
   @include mq(lg) {
     font-size: 19px;
   }
 }
-.font-lr {
+
+// fontサイズの設定（大）
+.font-lr {                  // lrはおそらくタイポでlgが正しいと思われます
   font-size: 17px;
 
+  // lgの時のフォントサイズ変更
   @include mq(lg) {
     font-size: 23px;
   }
 }
+
+// fontサイズの設定（特大）
 .font-lg {
   font-size: 25px;
 
+  // lgの時のフォントサイズ変更
   @include mq(lg) {
     font-size: 36px;
   }
 }
 
+// メインタイトルのスタイル
 .main-title {
-  @extend .font-lg;
-  font-weight: 600;
-  margin-bottom: 0;
+  @extend .font-lg;         // .font-lgのスタイルを継承
+  font-weight: 600;         // フォントウェイトの指定
+  margin-bottom: 0;         // マージンボトムの削除
   display: block;
 }
 
+// サブタイトルのスタイル
 .sub-title {
-  @extend .font-sm;
-  @extend .mb-sm;
-  color: $cSubTitle;
+  @extend .font-sm;         // .font-smのスタイルを継承
+  @extend .mb-sm;           // .mb-smのスタイルを継承
 }
