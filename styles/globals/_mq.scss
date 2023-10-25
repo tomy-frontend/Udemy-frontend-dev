@@ -1,3 +1,4 @@
+@use "sass:map";
 $breakpoints: (
   // 480px以上(スマホの横向き)のモニタで適用
   'sm': 'screen and (min-width: 480px)',
@@ -10,7 +11,7 @@ $breakpoints: (
 ) !default;
 
 @mixin mq($breakpoint: md) {
-  @media #{map-get($breakpoints, $breakpoint)} {
+  @media #{map.get($breakpoints, $breakpoint)} {
     @content;
   }
 }
