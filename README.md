@@ -3,4 +3,4 @@ Udemyで作成したJSとCSSアニメーション、ライブラリを盛り込�
 
 こちらからサイトを確認いただけます。
 
-https://tomy-web-coordinator.github.io/Udemy-frontend-dev/
+https://tomy-frontend.github.io/Udemy-frontend-dev/
